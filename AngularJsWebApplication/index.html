@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- this is telling that the page where all the parial templates are injected -->
+    <!-- is present within the root directory of the application, in this case, the index.html  -->
+    <!-- is put under root directory, so the href is "/"-->
+    <!-- it has to be put on the top of the head section otherwise the index.html page will be wrong if you refresh the page-->
+    <base href="/" />
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>  
+    <script src="Scripts/Scripts.js"></script>
+    <script src="Scripts/Filters.js"></script>
+    <link href="IndexStyles.css" rel="stylesheet" />
+</head>
+<body>
+    <table style="font-family: Arial">
+        <tr>
+            <td colspan="2" class="header">
+                WebSite Header
+            </td>
+        </tr>
+        <tr>
+            <td class="leftMenu">
+                <!-- there are 4 steps to remove # from url-->
+                <!-- firstly, add $locationProvide.html5Mode(true) into module.config()-->
+                <!-- secondly, remove # from all the links-->
+                <!-- thirdly, include URL rewrite rule in the web.config-->
+                <!-- forthly, use <base href="/" /> -->
+                <a href="home">Home</a>
+                <a href="courses">Courses</a>
+                <a href="coursesEvaluation">Course Evaluation</a>
+                <a href="students">Students</a>  
+                <a href="employees">Professors</a>
+                <a href="Locations">Locations</a>
+                <a href="Contact">Contact</a>
+            </td>
+            <td class="mainContent">
+                <!-- the parial templates(web pages) will be injected here depends on what url is given-->
+                <ng-view></ng-view>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="footer">
+                <b>Website Footer</b>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<div>
+    <!--double curly brackets means binding expression-->
+    <!-- the ng-model specifies the column that will be searched against, it will be autobinded to the column-->
+    <!-- if it is searchText.name, then it will search name, if it is searchText.gender, it will search gender-->
+    <!-- it is like creating an object in the model-->
+    Search: <input type="text" placeholder="Search Employees Name" ng-model="searchText.name" />
+    <input type="text" placeholder="Search Emplyees Gender" ng-model="searchText.gender" />
+    <input type="checkbox" ng-model="exactMatch" /> Exact Match
+    <br />
+    <!-- hideSalary will be evaluate to false during page loading-->
+    <input type="checkbox" ng-model="hideSalary" /> Hide Salary
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th ng-click="sortData('name')">
+                    Name <div ng-class="getSortClass('name')"></div>
+                </th>
+                <th ng-click="sortData('dateOfBirth')">
+                    Date Of Birth<div ng-class="getSortClass('dateOfBirth')"></div>
+                </th>
+                <th ng-click="sortData('gender')">
+                    Gender<div ng-class="getSortClass('gender')"></div>
+                </th>
+                <th ng-click="sortData('salary')" ng-hide="hideSalary">
+                    Salary<div ng-class="getSortClass('salary')"></div>
+                </th>
+                <th ng-click="sortData('salary')" ng-show="hideSalary">
+                    Salary<div ng-class="getSortClass('salary')"></div>
+                </th>
+                <th ng-click="sortData('hobby')">
+                    Hobby<div ng-class="getSortClass('hobby')"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- in the filter, depend on the searchText and exactMatch, if exactMatch is selected, then it is true -->
+            <!-- otherwise, it is false. If exactMatch is true, exact serach in turned on. or it is turned off-->
+            <tr ng-repeat="employee in employees | orderBy: sortColumn : reverseSort | filter: searchText : exactMatch">
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.dateOfBirth | date: "dd/MM/yyyy" }}</td>
+                <td>{{ employee.gender }}</td>
+                <!-- when user either check or uncheck the hide salary box, one of the lines will be displayed-->
+                <td ng-hide="hideSalary">{{ employee.salary }}</td>
+                <td ng-show="hideSalary">#####</td>
+                <td>{{ employee.hobby | hobby }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

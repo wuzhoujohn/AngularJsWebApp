@@ -1,0 +1,15 @@
+﻿<span ng-repeat="location in locationsCtrl.locationsList">
+    <button ng-click="locationsCtrl.scrollTo(location.Name)">{{ location.Name }}</button>
+</span>
+<br />
+<br />
+<div class="loactionDiv">
+    <fieldset ng-repeat="location in locationsCtrl.locationsList" id="{{ location.Name }}">
+        <legend>{{ location.Name }}</legend>
+        <ul>
+            <li ng-repeat="city in location.Cities">
+                {{ city.Name }}
+            </li>
+        </ul>
+    </fieldset>
+</div>
